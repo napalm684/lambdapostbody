@@ -33,7 +33,7 @@ func Handler(request Request) (Response, error) {
 	}, nil
 }
 
-func getName(request *Request) string {
+func unmarshal(request *Request) string {
 	var data struct {
 		Name string `json:"name"`
 	}
@@ -49,7 +49,7 @@ func getResponseBody(request *Request) string {
 	messageBody := struct {
 		Text string `json:"message"`
 	}{
-		buildMessageText(getName(request)),
+		buildMessageText(unmarshal(request)),
 	}
 	result, _ := json.Marshal(messageBody)
 	return string(result)
